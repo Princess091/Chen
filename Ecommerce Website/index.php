@@ -1,3 +1,8 @@
+<!--connect file-->
+<?php
+include('includes/connect.php');
+?>
+
 <!DOCTYPE HTML>
 <html lang="en>
 <head>
@@ -69,7 +74,7 @@
 <!-- third child -->
  <div class="bg-light">
   <h3 class="text-center">Hidden Store</h3>
-  <p class="text-center text-italicize">Shop Smart. Live Better</p>
+  <p class="text-center text-italicize">Shop Smart, Live Better</p>
  </div>
 
  <!-- fourth child -->
@@ -152,48 +157,22 @@
       <li class="nav-item bg-primary">
         <a href="#" class="nav-link text-light"><h4>Delivery Brands</h4></a>
       </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">Adidas</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">NARS</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">Elf</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">Louis Vuitton</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">Clinique</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">Apple</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">Sinister Prints & Wears</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">Nike</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">P9</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">Canon</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">HP</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">Ivy Flawless</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">Zento Furnitures</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">DwtStore</a>
-      </li>
+      <?php
+      
+$select_brands="Select * from 'brands'";
+$result_brands=mysqli_query($con,$select_brands);
+// $row_data=mysqli_fetch_assoc($result_brands);
+// echo $row_data['brand_title'];
+// echo $row_data['brand_title'];
+while(row_data=mysqli_fetch_assoc($result_brands)){
+  $brand_title=$row_data['brand_title'];
+  $brand_id=$row_data['brand_id'];
+  echo "<li class='nav-item'>
+        <a href='index.php?brand=$brand_id' class='nav-link text-light'>$brand_title</a>
+      </li>"
+}
+?>
+
     </ul>
 
     <!-- Categories to be displayed -->
@@ -201,24 +180,21 @@
       <li class="nav-item bg-primary">
         <a href="#" class="nav-link text-light"><h4>Categories</h4></a>
       </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">Makeup Products</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">Cloths</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">Furniture</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">Electronics</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">Accesories</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-light">Shoes</a>
-      </li>
+      <?php
+      
+      $select_categories="Select * from 'categories'";
+      $result_categories=mysqli_query($con,$select_categories);
+      // $row_data=mysqli_fetch_assoc($result_categories);
+      // echo $row_data['category_title'];
+      // echo $row_data['category_title'];
+      while(row_data=mysqli_fetch_assoc($result_categories)){
+        $category_title=$row_data['category_title'];
+        $category_id=$row_data['category_id'];
+        echo "<li class='nav-item'>
+              <a href='index.php?category=$category_id' class='nav-link text-light'>$category_title</a>
+            </li>"
+      }
+      ?>
     </ul>
   </div>
 </div>
